@@ -1,16 +1,34 @@
-name: My portfolio
-on: [push] # Déclencheur : s'active à chaque push
+name: Deploiement HTML Statique
+
+on:
+  push:
+    branches: ["main"] # Se lance quand vous poussez sur la branche principale
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
-  build-and-test:
-    runs-on: ubuntu-latest # L'environnement (machine virtuelle)
-    
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true' # On anticipe le changement de juin 2026
     steps:
-      - name: Récupérer le code du dépôt
+      - name: Checkout du code
         uses: actions/checkout@v4
 
-      - name: Installer les dépendances
-        run: npm install
+      - name: Configuration de GitHub Pages
+        uses: actions/configure-pages@v4
 
-      - name: Lancer les tests
-        run: npm test
+      - name: Téléchargement de l'artefact (votre HTML)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.' # Télécharge tout le contenu du dossier racine
+
+      - name: Déploiement réel
+        id: deployment
+        uses: actions/deploy-pages@v4
