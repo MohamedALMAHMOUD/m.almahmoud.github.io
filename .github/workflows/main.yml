@@ -1,9 +1,10 @@
-name: Deploiement HTML Statique
+name: Deploiement Site Statique
 
 on:
   push:
-    branches: ["main"] # Se lance quand vous poussez sur la branche principale
+    branches: ["main"]
 
+# Autorisations nécessaires pour déployer sur GitHub Pages
 permissions:
   contents: read
   pages: write
@@ -11,12 +12,9 @@ permissions:
 
 jobs:
   deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true' # On anticipe le changement de juin 2026
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
     steps:
       - name: Checkout du code
         uses: actions/checkout@v4
@@ -24,11 +22,13 @@ jobs:
       - name: Configuration de GitHub Pages
         uses: actions/configure-pages@v4
 
-      - name: Téléchargement de l'artefact (votre HTML)
+      - name: Création de l'artefact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.' # Télécharge tout le contenu du dossier racine
+          # On indique le dossier où se trouve votre index.html
+          # '.' signifie la racine du dépôt
+          path: '.' 
 
-      - name: Déploiement réel
+      - name: Déploiement sur GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
