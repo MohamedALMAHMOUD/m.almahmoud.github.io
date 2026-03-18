@@ -1,0 +1,16 @@
+name: My portfolio
+on: [push] # Déclencheur : s'active à chaque push
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest # L'environnement (machine virtuelle)
+    
+    steps:
+      - name: Récupérer le code du dépôt
+        uses: actions/checkout@v4
+
+      - name: Installer les dépendances
+        run: npm install
+
+      - name: Lancer les tests
+        run: npm test
