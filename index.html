@@ -1,786 +1,602 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>Welcome - Ayush Tankha Portfolio</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="Free Website Template" name="keywords">
-        <meta content="Free Website Template" name="description">
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — IA · Web · Automatisation</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Cairo:wght@300;400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f5f0;
+  --white: #ffffff;
+  --ink: #111010;
+  --mid: #666360;
+  --light: #c9c6bf;
+  --accent: #e05a2b;
+  --border: #e5e1d8;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+body.ar { font-family: 'Cairo', sans-serif; direction: rtl; }
 
-        <!-- Favicon -->
-        <link href="img/favicon.ico" rel="icon">
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 3rem; height: 64px;
+  background: rgba(247,245,240,0.93);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 1.05rem; letter-spacing: -0.02em;
+  color: var(--ink); text-decoration: none;
+}
+.nav-logo span { color: var(--accent); }
+.nav-right { display: flex; align-items: center; gap: 2rem; }
+.nav-links { display: flex; gap: 1.6rem; list-style: none; }
+.nav-links a {
+  font-size: 0.82rem; color: var(--mid);
+  text-decoration: none; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--ink); }
+.lang-btn {
+  background: var(--ink); color: var(--bg);
+  border: none; padding: 0.4rem 1rem;
+  font-size: 0.78rem; font-family: inherit; font-weight: 600;
+  cursor: pointer; border-radius: 2rem;
+  transition: background 0.2s, transform 0.15s;
+}
+.lang-btn:hover { background: var(--accent); transform: scale(1.04); }
 
-        <!-- Google Font -->
-        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+/* HERO */
+.hero {
+  min-height: 100vh; display: grid; place-items: center;
+  padding: 6rem 3rem 4rem; position: relative; overflow: hidden;
+}
+.hero-glow {
+  position: absolute; width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(224,90,43,0.08) 0%, transparent 70%);
+  top: 50%; left: 58%; transform: translate(-50%,-50%);
+  pointer-events: none;
+}
+.hero-inner { max-width: 780px; text-align: center; position: relative; }
 
-        <!-- CSS Libraries -->
-        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-        <link href="lib/animate/animate.min.css" rel="stylesheet">
-        <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-        <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 2rem; padding: 0.38rem 1rem;
+  font-size: 0.78rem; color: var(--mid);
+  margin-bottom: 2.2rem;
+  animation: fadeDown 0.6s ease both;
+}
+.dot {
+  width: 6px; height: 6px; background: #4cbb6d;
+  border-radius: 50%; animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.5)} }
 
-        <!-- Template Stylesheet -->
-        <link href="css/style.css" rel="stylesheet">
-    </head>
+.hero-title {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  line-height: 1.0; letter-spacing: -0.03em;
+  margin-bottom: 1.4rem;
+  animation: fadeUp 0.7s 0.1s ease both;
+}
+body.ar .hero-title { font-family: 'Cairo', sans-serif; font-size: clamp(2.2rem,6vw,5rem); }
+.hero-title .accent { color: var(--accent); }
 
-    <body data-spy="scroll" data-target=".navbar" data-offset="51">
-        <!-- Nav Bar Start -->
-        <div class="navbar navbar-expand-lg bg-light navbar-light">
-            <div class="container-fluid">
-                <a href="index.html" class="navbar-brand">Portfolio</a>
-                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+.hero-sub {
+  font-size: 1.05rem; color: var(--mid);
+  max-width: 520px; margin: 0 auto 2.5rem;
+  line-height: 1.75; font-weight: 300;
+  animation: fadeUp 0.7s 0.2s ease both;
+}
+.hero-cta {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  animation: fadeUp 0.7s 0.3s ease both;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.72rem 1.7rem; font-size: 0.88rem;
+  font-family: inherit; font-weight: 600;
+  border-radius: 2rem; text-decoration: none;
+  transition: all 0.25s; cursor: pointer; border: none;
+}
+.btn-dark { background: var(--ink); color: var(--bg); }
+.btn-dark:hover { background: var(--accent); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(224,90,43,.25); }
+.btn-outline { background: transparent; color: var(--ink); border: 1.5px solid var(--border); }
+.btn-outline:hover { border-color: var(--ink); transform: translateY(-2px); }
 
-                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
-                    <div class="navbar-nav ml-auto">
-                        <a href="#home" class="nav-item nav-link active">Home</a>
-                        <a href="#about" class="nav-item nav-link">About</a>
-                        <a href="#service" class="nav-item nav-link">Education</a>
-                        <a href="#experience" class="nav-item nav-link">Experience</a>
-                        <a href="#portfolio" class="nav-item nav-link">Portfolio</a>
-                        <!--a href="#price" class="nav-item nav-link">Price</a-->
-                        <!--a href="#review" class="nav-item nav-link">Review</a-->
-                        <a href="#team" class="nav-item nav-link">Hobbies</a>
-                        <a href="#blog" class="nav-item nav-link">Blog</a>
-                        <a href="#isfooter" class="nav-item nav-link">Contact</a>
-                    </div>
-                </div>
-            </div>
+.hero-pills {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
+  justify-content: center; margin-top: 3rem;
+  animation: fadeUp 0.7s 0.4s ease both;
+}
+.pill {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 2rem; padding: 0.28rem 0.85rem;
+  font-size: 0.74rem; color: var(--mid); font-weight: 500;
+  transition: all 0.2s;
+}
+.pill:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+/* SECTIONS */
+section { padding: 6rem 3rem; }
+.section-label {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--accent); margin-bottom: 0.8rem;
+}
+.section-label::before {
+  content: ''; display: block; width: 18px; height: 2px;
+  background: var(--accent); border-radius: 1px;
+}
+body.ar .section-label { flex-direction: row-reverse; }
+.section-title {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 0.7rem;
+}
+body.ar .section-title { font-family: 'Cairo', sans-serif; }
+.section-desc {
+  font-size: 0.95rem; color: var(--mid);
+  max-width: 460px; line-height: 1.75; font-weight: 300;
+}
+
+/* SKILLS */
+#competences { background: var(--white); }
+.skills-header { margin-bottom: 3rem; }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.skill-card {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 1rem; padding: 1.8rem;
+  transition: all 0.3s cubic-bezier(0.23,1,0.32,1);
+}
+.skill-card:hover {
+  transform: translateY(-5px); border-color: var(--accent);
+  box-shadow: 0 14px 36px rgba(224,90,43,.1);
+}
+.skill-emoji { font-size: 1.8rem; margin-bottom: 0.9rem; display: block; }
+.skill-name {
+  font-family: 'Syne', sans-serif; font-weight: 700;
+  font-size: 0.95rem; margin-bottom: 0.5rem;
+}
+body.ar .skill-name { font-family: 'Cairo', sans-serif; }
+.skill-desc { font-size: 0.82rem; color: var(--mid); line-height: 1.65; font-weight: 300; }
+
+/* PROJECTS */
+#projets { background: var(--bg); }
+.projects-header { margin-bottom: 3rem; }
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 1rem;
+}
+.project-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 1rem; padding: 1.8rem;
+  display: flex; flex-direction: column; gap: 0.8rem;
+  text-decoration: none; color: inherit;
+  position: relative; overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.23,1,0.32,1);
+}
+.project-card::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; width: 100%; height: 3px;
+  background: var(--accent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s ease;
+}
+body.ar .project-card::after { transform-origin: right; }
+.project-card:hover { transform: translateY(-5px); box-shadow: 0 18px 44px rgba(0,0,0,.08); }
+.project-card:hover::after { transform: scaleX(1); }
+.project-top { display: flex; align-items: flex-start; justify-content: space-between; }
+.project-icon { font-size: 1.8rem; }
+.project-arrow { font-size: 1.1rem; color: var(--light); transition: all 0.3s; }
+.project-card:hover .project-arrow { color: var(--accent); transform: translate(3px,-3px); }
+.project-cat { font-size: 0.67rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
+.project-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.15rem; letter-spacing: -0.01em; }
+body.ar .project-name { font-family: 'Cairo', sans-serif; }
+.project-desc { font-size: 0.82rem; color: var(--mid); line-height: 1.65; font-weight: 300; flex: 1; }
+.project-url { font-size: 0.7rem; color: var(--light); font-weight: 500; }
+
+/* SERVICES */
+#services { background: var(--white); }
+.services-layout {
+  display: grid; grid-template-columns: 1fr 2fr;
+  gap: 3rem; align-items: start; margin-top: 3rem;
+}
+.services-list {
+  display: flex; flex-direction: column; gap: 1px;
+  background: var(--border); border: 1px solid var(--border);
+  border-radius: 1rem; overflow: hidden;
+}
+.service-item {
+  background: var(--bg); padding: 1.2rem 1.5rem;
+  display: flex; align-items: center; gap: 0.9rem;
+  cursor: pointer; transition: all 0.22s;
+  border-left: 3px solid transparent;
+}
+body.ar .service-item { border-left: none; border-right: 3px solid transparent; }
+.service-item:hover, .service-item.active {
+  background: var(--white); border-left-color: var(--accent);
+}
+body.ar .service-item:hover, body.ar .service-item.active {
+  border-left-color: transparent; border-right-color: var(--accent);
+}
+.s-icon { font-size: 1.3rem; flex-shrink: 0; }
+.s-name { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.85rem; }
+body.ar .s-name { font-family: 'Cairo', sans-serif; }
+
+.service-panel { position: sticky; top: 80px; }
+.service-card {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 1rem; padding: 2.2rem;
+  display: none;
+}
+.service-card.active { display: block; animation: fadeIn 0.28s ease; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+.sc-icon { font-size: 2.2rem; margin-bottom: 0.9rem; display: block; }
+.sc-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.3rem; margin-bottom: 0.9rem; }
+body.ar .sc-title { font-family: 'Cairo', sans-serif; }
+.sc-desc { font-size: 0.88rem; color: var(--mid); line-height: 1.8; font-weight: 300; margin-bottom: 1.3rem; }
+.sc-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.sc-tag {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 2rem; padding: 0.22rem 0.65rem;
+  font-size: 0.7rem; color: var(--mid); font-weight: 500;
+}
+
+/* CONTACT */
+#contact { background: var(--ink); }
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 5rem; align-items: center; max-width: 860px; margin: 0 auto;
+}
+.contact-section-label {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--accent); margin-bottom: 0.8rem;
+}
+.contact-section-label::before {
+  content: ''; display: block; width: 18px; height: 2px;
+  background: var(--accent); border-radius: 1px;
+}
+body.ar .contact-section-label { flex-direction: row-reverse; }
+.contact-title {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(1.8rem,4vw,3rem); color: #f7f5f0;
+  letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 0.9rem;
+}
+body.ar .contact-title { font-family: 'Cairo', sans-serif; }
+.contact-sub { font-size: 0.9rem; color: #777; line-height: 1.7; font-weight: 300; }
+.contact-cards { display: flex; flex-direction: column; gap: 0.8rem; }
+.ccard {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.09);
+  border-radius: 0.8rem; padding: 1.1rem 1.3rem;
+  transition: all 0.22s;
+}
+.ccard:hover { background: rgba(255,255,255,.09); transform: translateX(4px); }
+body.ar .ccard:hover { transform: translateX(-4px); }
+.ccard-label { font-size: 0.63rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin-bottom: 0.25rem; }
+.ccard-val { font-size: 0.92rem; color: #f0ece4; }
+.avail { display: inline-flex; align-items: center; gap: 0.5rem; color: #4cbb6d; font-weight: 500; font-size: 0.88rem; }
+.avail::before { content:''; width:8px; height:8px; background:#4cbb6d; border-radius:50%; animation:pulse 2s infinite; }
+
+footer {
+  background: var(--ink); border-top: 1px solid rgba(255,255,255,.07);
+  padding: 1.4rem 3rem; display: flex; justify-content: space-between; align-items: center;
+}
+.footer-text { font-size: 0.75rem; color: #444; }
+
+/* ANIMS */
+@keyframes fadeUp { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:none} }
+@keyframes fadeDown { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:none} }
+.reveal { opacity:0; transform:translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.23,1,.32,1); }
+.reveal.on { opacity:1; transform:none; }
+
+@media (max-width:768px) {
+  nav { padding: 0 1.2rem; }
+  .nav-links { display: none; }
+  section { padding: 4rem 1.2rem; }
+  .hero { padding: 5rem 1.2rem 3rem; }
+  .services-layout { grid-template-columns: 1fr; }
+  .service-panel { position: static; }
+  .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  footer { flex-direction: column; gap: 0.4rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#"><span>port</span>folio</a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#competences" data-fr="Compétences" data-ar="الكفاءات">Compétences</a></li>
+      <li><a href="#projets" data-fr="Projets" data-ar="المشاريع">Projets</a></li>
+      <li><a href="#services" data-fr="Services" data-ar="الخدمات">Services</a></li>
+      <li><a href="#contact" data-fr="Contact" data-ar="التواصل">Contact</a></li>
+    </ul>
+    <button class="lang-btn" id="langBtn" onclick="toggleLang()">🌐 العربية</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      <span data-fr="Disponible pour de nouveaux projets" data-ar="متاح لمشاريع جديدة">Disponible pour de nouveaux projets</span>
+    </div>
+    <h1 class="hero-title" data-fr="Créateur de<br>solutions <span class='accent'>digitales</span>" data-ar="مبتكر<br>حلول <span class='accent'>رقمية</span>">
+      Créateur de<br>solutions <span class="accent">digitales</span>
+    </h1>
+    <p class="hero-sub" data-fr="Sites web, e-commerce, automatisation n8n, formation IA et applications intelligentes — je construis des outils qui font gagner du temps et créent de la valeur." data-ar="مواقع ويب، تجارة إلكترونية، أتمتة n8n، تدريب على الذكاء الاصطناعي وتطبيقات ذكية — أبني أدوات توفّر الوقت وتضيف القيمة.">
+      Sites web, e-commerce, automatisation n8n, formation IA et applications intelligentes — je construis des outils qui font gagner du temps et créent de la valeur.
+    </p>
+    <div class="hero-cta">
+      <a href="#projets" class="btn btn-dark" data-fr="Voir mes projets →" data-ar="← استعراض المشاريع">Voir mes projets →</a>
+      <a href="#contact" class="btn btn-outline" data-fr="Me contacter" data-ar="التواصل">Me contacter</a>
+    </div>
+    <div class="hero-pills">
+      <span class="pill">Python 🐍</span>
+      <span class="pill">n8n ⚡</span>
+      <span class="pill">GitHub Actions</span>
+      <span class="pill">WordPress</span>
+      <span class="pill">WooCommerce</span>
+      <span class="pill">IA / LLM 🤖</span>
+      <span class="pill">Formation</span>
+    </div>
+  </div>
+</section>
+
+<!-- COMPÉTENCES -->
+<section id="competences">
+  <div class="skills-header reveal">
+    <div class="section-label" data-fr="Ce que je maîtrise" data-ar="ما أتقنه">Ce que je maîtrise</div>
+    <h2 class="section-title" data-fr="Compétences" data-ar="الكفاءات">Compétences</h2>
+    <p class="section-desc" data-fr="Des savoir-faire complémentaires pour votre transformation digitale." data-ar="مهارات متكاملة في خدمة تحوّلكم الرقمي.">Des savoir-faire complémentaires pour votre transformation digitale.</p>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card reveal">
+      <span class="skill-emoji">⚡</span>
+      <div class="skill-name" data-fr="Automatisation n8n" data-ar="الأتمتة مع n8n">Automatisation n8n</div>
+      <p class="skill-desc" data-fr="Workflows automatisés avec n8n, GitHub Actions, scripts Python. Connectez vos outils, éliminez les tâches répétitives." data-ar="سير عمل آلية مع n8n وGitHub Actions وPython. ربط أدواتك والقضاء على المهام المتكررة.">Workflows automatisés avec n8n, GitHub Actions, scripts Python. Connectez vos outils, éliminez les tâches répétitives.</p>
+    </div>
+    <div class="skill-card reveal">
+      <span class="skill-emoji">🌐</span>
+      <div class="skill-name" data-fr="Création Web" data-ar="إنشاء المواقع">Création Web</div>
+      <p class="skill-desc" data-fr="Sites vitrines, associatifs, landing pages. Design soigné, SEO optimisé, prise en main autonome assurée." data-ar="مواقع عرض، جمعيات، صفحات هبوط. تصميم مُعتنى به، تحسين محركات البحث، استقلالية في الإدارة.">Sites vitrines, associatifs, landing pages. Design soigné, SEO optimisé, prise en main autonome assurée.</p>
+    </div>
+    <div class="skill-card reveal">
+      <span class="skill-emoji">🛒</span>
+      <div class="skill-name" data-fr="E-commerce" data-ar="التجارة الإلكترونية">E-commerce</div>
+      <p class="skill-desc" data-fr="Boutiques WooCommerce complètes : produits, paiements, livraisons, coupons. De la mise en ligne aux premières ventes." data-ar="متاجر WooCommerce متكاملة: منتجات، مدفوعات، شحن، كوبونات. من الإطلاق حتى أولى المبيعات.">Boutiques WooCommerce complètes : produits, paiements, livraisons, coupons. De la mise en ligne aux premières ventes.</p>
+    </div>
+    <div class="skill-card reveal">
+      <span class="skill-emoji">🎓</span>
+      <div class="skill-name" data-fr="Formation IA" data-ar="تدريب ذكاء اصطناعي">Formation IA</div>
+      <p class="skill-desc" data-fr="Ateliers pour particuliers et chefs d'entreprise. ChatGPT, prompting, outils IA. Zéro jargon, 100% pratique." data-ar="ورش للأفراد وأصحاب الأعمال. ChatGPT، Prompting، أدوات ذكاء اصطناعي. بدون مصطلحات، 100% تطبيقي.">Ateliers pour particuliers et chefs d'entreprise. ChatGPT, prompting, outils IA. Zéro jargon, 100% pratique.</p>
+    </div>
+    <div class="skill-card reveal">
+      <span class="skill-emoji">🤖</span>
+      <div class="skill-name" data-fr="Applications IA" data-ar="تطبيقات الذكاء الاصطناعي">Applications IA</div>
+      <p class="skill-desc" data-fr="Chatbots, assistants sur mesure, outils LLM intégrés à votre activité. L'IA au service de vos besoins concrets." data-ar="Chatbots، مساعدون مخصصون، أدوات LLM مدمجة في نشاطكم. الذكاء الاصطناعي في خدمة احتياجاتكم الفعلية.">Chatbots, assistants sur mesure, outils LLM intégrés à votre activité. L'IA au service de vos besoins concrets.</p>
+    </div>
+    <div class="skill-card reveal">
+      <span class="skill-emoji">🐍</span>
+      <div class="skill-name" data-fr="Python" data-ar="Python">Python</div>
+      <p class="skill-desc" data-fr="Scripting, automatisation, APIs, traitement de données. Python comme couteau suisse du développeur moderne." data-ar="سكريبتات، أتمتة، APIs، معالجة بيانات. Python كأداة متعددة الاستخدامات للمطور الحديث.">Scripting, automatisation, APIs, traitement de données. Python comme couteau suisse du développeur moderne.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROJETS -->
+<section id="projets">
+  <div class="projects-header reveal">
+    <div class="section-label" data-fr="Réalisations" data-ar="الإنجازات">Réalisations</div>
+    <h2 class="section-title" data-fr="Mes projets" data-ar="مشاريعي">Mes projets</h2>
+    <p class="section-desc" data-fr="Des sites vivants, utilisés chaque jour par de vraies personnes." data-ar="مواقع حيّة، يستخدمها أشخاص حقيقيون كل يوم.">Des sites vivants, utilisés chaque jour par de vraies personnes.</p>
+  </div>
+  <div class="projects-grid">
+    <a class="project-card reveal" href="https://coupducode.fr" target="_blank">
+      <div class="project-top"><span class="project-icon">🚗</span><span class="project-arrow">↗</span></div>
+      <div class="project-cat" data-fr="Formation · Chatbot IA · Code de la route" data-ar="تكوين · Chatbot IA · قانون المرور">Formation · Chatbot IA · Code de la route</div>
+      <div class="project-name">Coup du Code</div>
+      <p class="project-desc" data-fr="Plateforme d'apprentissage du code de la route avec un chatbot IA intégré. Les candidats s'entraînent, posent leurs questions et progressent à leur rythme grâce à l'intelligence artificielle." data-ar="منصة تعلّم قانون المرور مع chatbot ذكاء اصطناعي مدمج. يتدرب المرشحون ويطرحون أسئلتهم ويتقدمون بوتيرتهم بفضل الذكاء الاصطناعي.">Plateforme d'apprentissage du code de la route avec un chatbot IA intégré. Les candidats s'entraînent, posent leurs questions et progressent à leur rythme grâce à l'intelligence artificielle.</p>
+      <div class="project-url">coupducode.fr</div>
+    </a>
+    <a class="project-card reveal" href="https://west-spiruline.fr" target="_blank">
+      <div class="project-top"><span class="project-icon">🌿</span><span class="project-arrow">↗</span></div>
+      <div class="project-cat" data-fr="E-commerce · WooCommerce · Bien-être" data-ar="تجارة إلكترونية · WooCommerce · رفاه">E-commerce · WooCommerce · Bien-être</div>
+      <div class="project-name">West Spiruline</div>
+      <p class="project-desc" data-fr="Boutique en ligne pour un producteur artisanal de spiruline. Vente directe, fiches produits détaillées, expérience d'achat simple et rassurante pour les clients." data-ar="متجر إلكتروني لمنتج حرفي للسبيرولينا. بيع مباشر، بطاقات منتجات مفصّلة، تجربة شراء سهلة وموثوقة للعملاء.">Boutique en ligne pour un producteur artisanal de spiruline. Vente directe, fiches produits détaillées, expérience d'achat simple et rassurante pour les clients.</p>
+      <div class="project-url">west-spiruline.fr</div>
+    </a>
+    <a class="project-card reveal" href="https://hirondelle-syrienne.org" target="_blank">
+      <div class="project-top"><span class="project-icon">🕊️</span><span class="project-arrow">↗</span></div>
+      <div class="project-cat" data-fr="Association · Humanitaire · Syrie" data-ar="جمعية · إنساني · سوريا">Association · Humanitaire · Syrie</div>
+      <div class="project-name">Hirondelle Syrienne</div>
+      <p class="project-desc" data-fr="Site d'une association humanitaire dédiée à l'aide aux Syriens. Présentation des actions menées, collectes de dons et actualités du terrain." data-ar="موقع جمعية إنسانية مكرّسة لمساعدة السوريين. عرض النشاطات المنجزة، جمع التبرعات وأخبار الميدان.">Site d'une association humanitaire dédiée à l'aide aux Syriens. Présentation des actions menées, collectes de dons et actualités du terrain.</p>
+      <div class="project-url">hirondelle-syrienne.org</div>
+    </a>
+    <a class="project-card reveal" href="https://hirondelles.org" target="_blank">
+      <div class="project-top"><span class="project-icon">🤝</span><span class="project-arrow">↗</span></div>
+      <div class="project-cat" data-fr="Services · Intégration · Étrangers en France" data-ar="خدمات · اندماج · أجانب في فرنسا">Services · Intégration · Étrangers en France</div>
+      <div class="project-name">Hirondelles</div>
+      <p class="project-desc" data-fr="Plateforme d'aide aux étrangers vivant en France : accompagnement dans les démarches administratives, orientation et ressources pratiques pour bien s'intégrer." data-ar="منصة لمساعدة الأجانب في فرنسا: مرافقة في الإجراءات الإدارية، توجيه وموارد عملية للاندماج الجيد.">Plateforme d'aide aux étrangers vivant en France : accompagnement dans les démarches administratives, orientation et ressources pratiques pour bien s'intégrer.</p>
+      <div class="project-url">hirondelles.org</div>
+    </a>
+    <a class="project-card reveal" href="https://cabane-data.fr" target="_blank">
+      <div class="project-top"><span class="project-icon">🧠</span><span class="project-arrow">↗</span></div>
+      <div class="project-cat" data-fr="Conseil · IA · Accompagnement digital" data-ar="استشارة · ذكاء اصطناعي · مرافقة رقمية">Conseil · IA · Accompagnement digital</div>
+      <div class="project-name">Cabane Data</div>
+      <p class="project-desc" data-fr="Accompagnement des entreprises et indépendants dans leur adoption de l'IA : audit des besoins, stratégie, mise en œuvre d'outils intelligents adaptés à chaque activité." data-ar="مرافقة الشركات والمستقلين في اعتماد الذكاء الاصطناعي: تدقيق الاحتياجات، استراتيجية، تطبيق أدوات ذكية ملائمة لكل نشاط.">Accompagnement des entreprises et indépendants dans leur adoption de l'IA : audit des besoins, stratégie, mise en œuvre d'outils intelligents adaptés à chaque activité.</p>
+      <div class="project-url">cabane-data.fr</div>
+    </a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="reveal">
+    <div class="section-label" data-fr="Ce que je propose" data-ar="ما أقترحه">Ce que je propose</div>
+    <h2 class="section-title" data-fr="Mes services" data-ar="خدماتي">Mes services</h2>
+  </div>
+  <div class="services-layout reveal">
+    <div class="services-list">
+      <div class="service-item active" data-target="s1">
+        <span class="s-icon">🌐</span>
+        <span class="s-name" data-fr="Sites web" data-ar="مواقع ويب">Sites web</span>
+      </div>
+      <div class="service-item" data-target="s2">
+        <span class="s-icon">🛒</span>
+        <span class="s-name" data-fr="E-commerce" data-ar="التجارة الإلكترونية">E-commerce</span>
+      </div>
+      <div class="service-item" data-target="s3">
+        <span class="s-icon">⚡</span>
+        <span class="s-name" data-fr="Automatisation n8n" data-ar="أتمتة n8n">Automatisation n8n</span>
+      </div>
+      <div class="service-item" data-target="s4">
+        <span class="s-icon">🎓</span>
+        <span class="s-name" data-fr="Formation IA" data-ar="تدريب ذكاء اصطناعي">Formation IA</span>
+      </div>
+      <div class="service-item" data-target="s5">
+        <span class="s-icon">🤖</span>
+        <span class="s-name" data-fr="Applications IA" data-ar="تطبيقات ذكاء اصطناعي">Applications IA</span>
+      </div>
+    </div>
+    <div class="service-panel">
+      <div class="service-card active" id="s1">
+        <span class="sc-icon">🌐</span>
+        <div class="sc-title" data-fr="Sites web" data-ar="مواقع الويب">Sites web</div>
+        <p class="sc-desc" data-fr="Sites vitrines, associatifs, institutionnels — conçus pour être clairs, rapides et efficaces. Je gère le design, le développement et le référencement, et je forme le client à l'autonomie." data-ar="مواقع عرض، جمعيات، مؤسسات — مصممة لتكون واضحة وسريعة وفعّالة. أتولى التصميم والتطوير وتحسين محركات البحث، وأدرّب العميل على الاستقلالية.">Sites vitrines, associatifs, institutionnels — conçus pour être clairs, rapides et efficaces. Je gère le design, le développement et le référencement, et je forme le client à l'autonomie.</p>
+        <div class="sc-tags">
+          <span class="sc-tag">WordPress</span><span class="sc-tag">SEO</span><span class="sc-tag">Design</span><span class="sc-tag">Responsive</span>
         </div>
-        <!-- Nav Bar End -->
-
-
-        <!-- Hero Start -->
-        <div class="hero" id="home">
-            <div class="container-fluid">
-                <div class="row align-items-center">
-                    <div class="col-sm-12 col-md-6">
-                        <div class="hero-content">
-                            <div class="hero-text">
-                                <p>I'm</p>
-                                <h1>Ayush Tankha</h1>
-                                <h2></h2>
-                                <div class="typed-text">Data Analyst, Business Analyst, Data Scientist</div>
-                            </div>
-                            <div class="hero-btn">
-                                <a class="btn" href="#isfooter">Contact Me</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-md-6 d-none d-md-block">
-                        <div class="hero-image">
-                            <img src="img/dp.png" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="service-card" id="s2">
+        <span class="sc-icon">🛒</span>
+        <div class="sc-title" data-fr="E-commerce" data-ar="التجارة الإلكترونية">E-commerce</div>
+        <p class="sc-desc" data-fr="Boutiques en ligne complètes avec WooCommerce. Catalogue produits, paiements sécurisés, gestion des stocks, coupons et analyse des ventes. Vous vendez, je m'occupe du reste." data-ar="متاجر إلكترونية متكاملة مع WooCommerce. كتالوج منتجات، مدفوعات آمنة، إدارة مخزون، كوبونات وتحليل المبيعات. أنتم تبيعون، أنا أتولى الباقي.">Boutiques en ligne complètes avec WooCommerce. Catalogue produits, paiements sécurisés, gestion des stocks, coupons et analyse des ventes. Vous vendez, je m'occupe du reste.</p>
+        <div class="sc-tags">
+          <span class="sc-tag">WooCommerce</span><span class="sc-tag">Stripe</span><span class="sc-tag">Stocks</span><span class="sc-tag">Analytics</span>
         </div>
-        <!-- Hero End -->
-
-
-        <!-- About Start -->
-        <div class="about wow fadeInUp" data-wow-delay="0.1s" id="about">
-            <div class="container-fluid">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <div class="about-img">
-                            <img src="img/dp.jpg" alt="Image">
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="about-content">
-                            <div class="section-header text-left">
-                                <p>Learn About Me</p>
-                                <h2>About Me</h2>
-                            </div>
-                            <div class="about-text">
-                                <p>
-                                    As a professional specializing in extracting insights from data, I excel in identifying trends, creating reports, and supporting decision-making processes. My expertise lies in interpreting complex datasets, designing efficient data models, and providing actionable recommendations to enhance business performance. With a strong foundation in statistical analysis and a keen eye for detail, I help organizations understand their data and drive strategic initiatives.
-                                </p>
-                            </div>
-                            <div class="skills">
-                                <div class="skill-name">
-                                    <p>SQL</p><p>85%</p>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <div class="skill-name">
-                                    <p>Power BI</p><p>95%</p>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <div class="skill-name">
-                                    <p>Python</p><p>90%</p>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <div class="skill-name">
-                                    <p>Consulting</p><p>85%</p>
-                                </div>
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                            </div>
-                            <a class="btn" href="https://medium.com/@ayushtankha">Learn More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="service-card" id="s3">
+        <span class="sc-icon">⚡</span>
+        <div class="sc-title" data-fr="Automatisation n8n" data-ar="الأتمتة مع n8n">Automatisation n8n</div>
+        <p class="sc-desc" data-fr="Automatisez vos processus avec n8n : synchronisation de données, emails automatiques, connexion de vos outils (CRM, Google Sheets, Slack, Notion...). Moins de tâches répétitives, plus d'efficacité." data-ar="أتمتة عملياتكم مع n8n: مزامنة البيانات، رسائل إلكترونية تلقائية، ربط أدواتكم (CRM، Google Sheets، Slack، Notion...). مهام أقل، فعالية أكبر.">Automatisez vos processus avec n8n : synchronisation de données, emails automatiques, connexion de vos outils (CRM, Google Sheets, Slack, Notion...). Moins de tâches répétitives, plus d'efficacité.</p>
+        <div class="sc-tags">
+          <span class="sc-tag">n8n</span><span class="sc-tag">GitHub Actions</span><span class="sc-tag">Python</span><span class="sc-tag">APIs</span>
         </div>
-        <!-- About End -->
-        
-        
-        <!-- Service Start -->
-        <div class="service" id="service">
-            <div class="container">
-                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
-                    <p>My journey in knowledge</p>
-                    <h2>Education</h2>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.0s">
-                        <div class="service-item">
-                            <div class="service-icon">
-                                <img src="img/essec.jpg" alt="Web Design Icon" style="width: 100px; height: 100px;">
-                                <!-- i class="fa fa-laptop"></i-->
-                            </div>
-                            <div class="service-text">
-                                <h3>ESSEC Business School & CentraleSupelec (2022 - 2024)</h3>
-                                <h6>Ms Data Science & Business Analytics </h6>
-                                <h6>(Paris, France) </h6>
-                                <p>
-                                    
-                                    
-                                    
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <!--div class="col-lg-6 wow fadeInUp" data-wow-delay="0.2s">
-                        <div class="service-item">
-                            <div class="service-icon">
-                                <i class="fa fa-laptop-code"></i>
-                            </div>
-                            <div class="service-text">
-                                <h3>Web Development</h3>
-                                <p>
-                                    Lorem ipsum dolor sit amet elit. Phase nec preti mi. Curabi facilis ornare velit non
-                                </p>
-                            </div>
-                        </div>
-                    </div-->
-                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.4s">
-                        <div class="service-item">
-                            <div class="service-icon">
-                                <img src="img/dtu.jpg" alt="Web Design Icon" style="width: 100px; height: 100px;">
-
-                                <!--i class="fab fa-android"></i-->
-                            </div>
-                            <div class="service-text">
-                                <h3>Delhi Technological University (2017 - 2021)</h3>
-                                <h6>B.Tech in Mechanical Engineering </h6>
-                                <h6>(Delhi, India) </h6>
-                            </div>
-                        </div>
-                    </div>
-                    <!--div class="col-lg-6 wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="service-item">
-                            <div class="service-icon">
-                                <i class="fab fa-apple"></i>
-                            </div>
-                            <div class="service-text">
-                                <h3>Apps Development</h3>
-                                <p>
-                                    Lorem ipsum dolor sit amet elit. Phase nec preti mi. Curabi facilis ornare velit non
-                                </p>
-                            </div>
-                        </div -->
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="service-card" id="s4">
+        <span class="sc-icon">🎓</span>
+        <div class="sc-title" data-fr="Formation IA" data-ar="تدريب على الذكاء الاصطناعي">Formation IA</div>
+        <p class="sc-desc" data-fr="Ateliers personnalisés pour particuliers et chefs de TPE/PME. Maîtrisez ChatGPT, apprenez le prompting et intégrez les bons outils IA dans votre quotidien. Zéro jargon, 100% actionnable." data-ar="ورش مخصصة للأفراد وأصحاب المؤسسات الصغيرة. أتقنوا ChatGPT، تعلّموا الـPrompting وادمجوا الأدوات الصحيحة في يومكم. بدون مصطلحات، 100% قابل للتطبيق.">Ateliers personnalisés pour particuliers et chefs de TPE/PME. Maîtrisez ChatGPT, apprenez le prompting et intégrez les bons outils IA dans votre quotidien. Zéro jargon, 100% actionnable.</p>
+        <div class="sc-tags">
+          <span class="sc-tag">ChatGPT</span><span class="sc-tag">Prompting</span><span class="sc-tag">Outils IA</span><span class="sc-tag">Pratique</span>
         </div>
-        <!-- Service End -->
-        
-        
-         <!-- Experience Start -->
-        <div class="experience" id="experience">
-            <div class="container">
-                <header class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
-                    <!-- p>My Resume</p-->
-                    <h2>Work Experience (1-2 Years)</h2>
-                </header>
-                <div class="timeline">
-                    <div class="timeline-item left wow slideInLeft" data-wow-delay="0.1s">
-                        <div class="timeline-text">
-                            <div class="timeline-date">Jul 2024 - Dec 2024 (6 months) </div>
-                            <h2>AGFA</h2> 
-                            <h4>Business Analyst Intern&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>(HQ, Belgium)</strong></h4>
-                            <p>
-                                •	Managed  <b>10+ weekly</b> Power BI KPI dashboards, providing sales insights for Agfa’s Direct Radiography portfolio to affiliates across <b>6 regions and 150+  countries</b>. </p>
-                            <p>    •	Automated key BI reports and led a shift from ELT to ETL using Microsoft Power Platform, reducing report generation time by <b>25%</b> and improving accuracy.
-                                                            </p>
-                        </div>
-                    </div>
-                    <div class="timeline-item right wow slideInRight" data-wow-delay="0.1s">
-                        <div class="timeline-text">
-                            <div class="timeline-date">Jan 2024 - Jun 2024 (6 months)</div>
-                            <h2>ACCOR</h2>
-                            <h4>Data Science Apprentice&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>(Paris, France)</strong></h4>
-                            <p>
-                                •	Developed a comprehensive Travel Itinerary Generator using Python and Streamlit, integrating AWS Bedrock, Boto3, and Generative AI to dynamically generate personalized travel plans based on user input and preferences.</p>
-                           <p>  •	Implemented interactive features including user authentication, customized travel itineraries, hotel search and booking, and attraction suggestions using APIs from Accor, Google Maps, and AWS resulting an <b>NPS score of 72.</b>    
-                                                            </p>
-                        </div>
-                    </div>
-                    <div class="timeline-item left wow slideInLeft" data-wow-delay="0.1s">
-                        <div class="timeline-text">
-                            <div class="timeline-date">Jun 2023 - Sep 2023 (4 Months)</div>
-                            <h2>Telecom Sud Paris</h2>
-                            <h4>Data Science Intern&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>(Paris, France)</strong></h4>
-                            <p>
-                                •	Collected and processed over <b>40 years</b> of climatic data to build a Neural Prophet model, achieving an <b>RMSE of 0.05</b>, significantly improving amount of rainfall prediction accuracy. </p>
-                            <p> •	Utilized histograms, box plots, scatter plots, and correlation matrices to understand data distributions, relationships, and stationarity, aiding in data modelling and <b>improving model performance by 10%.</b>
-                                                            </p>
-                        </div>
-                    </div>
-                    <div class="timeline-item right wow slideInRight" data-wow-delay="0.1s">
-                        <div class="timeline-text">
-                            <div class="timeline-date">Sep 2021 - Jun 2022 (10 months)</div>
-                            <h2>KPMG</h2>
-                            <h4>Analyst&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>(Delhi, India)</strong></h4>
-                            <p>
-                                •	Directed multiple projects across Insurance, Marketing, Hospitality, and Analytics sectors, developing risk mitigation strategies and conducting regular status reviews with client leadership. </p>
-                            <p>    •	Conducted detailed inspections of AWS-based infrastructures, achieving a <b>95% compliance rate</b> with IT audit standards and a <b>10% improvement</b> in IT control reporting precision under SOC 1 and SOC 2 frameworks. </p>
-                            <p>    •	Developed project progress decks and interactive dashboards using tableau, improving stakeholder engagement.
-                                                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      </div>
+      <div class="service-card" id="s5">
+        <span class="sc-icon">🤖</span>
+        <div class="sc-title" data-fr="Applications IA" data-ar="تطبيقات الذكاء الاصطناعي">Applications IA</div>
+        <p class="sc-desc" data-fr="Développement de chatbots, assistants virtuels et outils intelligents intégrés à votre site ou vos processus. Exemple : le chatbot IA de coupducode.fr pour apprendre le code de la route." data-ar="تطوير chatbots، مساعدين افتراضيين وأدوات ذكية مدمجة في موقعكم أو عملياتكم. مثال: chatbot ذكاء اصطناعي على coupducode.fr لتعلّم قانون المرور.">Développement de chatbots, assistants virtuels et outils intelligents intégrés à votre site ou vos processus. Exemple : le chatbot IA de coupducode.fr pour apprendre le code de la route.</p>
+        <div class="sc-tags">
+          <span class="sc-tag">Chatbot</span><span class="sc-tag">LLM</span><span class="sc-tag">API IA</span><span class="sc-tag">Sur mesure</span>
         </div>
-        <!-- Job Experience End -->
-        
-        
-        <!-- Banner Start -->
-        <div class="banner wow zoomIn" data-wow-delay="0.1s">
-            <div class="container">
-                <div class="section-header text-center">
-                    <!--p>Reasonable Price</p -->
-                    <h2>Let's <span>DIVE</span> In</h2>
-                </div>
-                <!-- div class="container banner-text">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem. Curabitur non nisl nec nisi scelerisque maximus. 
-                    </p>
-                    <a class="btn">Pricing Plan</a>
-                </div -->
-            </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="contact-section-label" data-fr="On travaille ensemble ?" data-ar="نعمل معًا؟">On travaille ensemble ?</div>
+      <h2 class="contact-title" data-fr="Parlons de votre projet." data-ar="لنتحدث عن مشروعك.">Parlons de votre projet.</h2>
+      <p class="contact-sub" data-fr="Site web, automatisation n8n, formation IA ou application sur mesure — je suis disponible." data-ar="موقع ويب، أتمتة n8n، تدريب على الذكاء الاصطناعي أو تطبيق مخصص — أنا متاح.">Site web, automatisation n8n, formation IA ou application sur mesure — je suis disponible.</p>
+    </div>
+    <div class="contact-cards reveal">
+      <div class="ccard">
+        <div class="ccard-label">GitHub</div>
+        <div class="ccard-val">github.com/votre-profil</div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-label" data-fr="Email" data-ar="البريد الإلكتروني">Email</div>
+        <div class="ccard-val">contact@votre-domaine.fr</div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-label" data-fr="Localisation" data-ar="الموقع">Localisation</div>
+        <div class="ccard-val" data-fr="Thouaré-sur-Loire, France 🇫🇷" data-ar="توارى-سور-لوار، فرنسا 🇫🇷">Thouaré-sur-Loire, France 🇫🇷</div>
+      </div>
+      <div class="ccard">
+        <div class="ccard-label" data-fr="Disponibilité" data-ar="التوفر">Disponibilité</div>
+        <div class="ccard-val">
+          <span class="avail" data-fr="Disponible pour missions" data-ar="متاح للمهام">Disponible pour missions</span>
         </div>
-        <!-- Banner End -->
+      </div>
+    </div>
+  </div>
+</section>
 
+<footer>
+  <span class="footer-text" data-fr="© 2025 — Portfolio IA & Web · Thouaré-sur-Loire" data-ar="© 2025 — محفظة أعمال · الذكاء الاصطناعي والويب">© 2025 — Portfolio IA & Web · Thouaré-sur-Loire</span>
+  <span class="footer-text" data-fr="Fait avec passion & IA ✦" data-ar="صُنع بشغف وذكاء اصطناعي ✦">Fait avec passion & IA ✦</span>
+</footer>
 
-        <!-- Portfolio Start -->
-        <div class="portfolio" id="portfolio">
-            <div class="container">
-                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
-                    <p>My Portfolio</p>
-                    <h2>Projects</h2>
-                </div>
-                <div class="row">
-                    <div class="col-12">
-                        <ul id="portfolio-filter">
-                            <li data-filter="*" class="filter-active">All</li>
-                            <li data-filter=".filter-1">Internship</li>
-                            <li data-filter=".filter-2">Business Intelligence</li>
-                            <li data-filter=".filter-3">Data Science</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row portfolio-container">
-                    <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-1 wow fadeInUp" data-wow-delay="0.0s">
-                        <div class="portfolio-wrap">
-                            <div class="portfolio-img">
-                                <img src="img/accor.png" alt="Image">
-                            </div>
-                            <div class="portfolio-text">
-                                <h3>Travel Itinieary Planner (Gen AI) ACCOR</h3>
-                                <a class="btn" href="https://medium.com/@ayushtankha/gen-ai-travel-itinerary-planner-accor-31f437bef8e0"  target="_blank">+</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-2 wow fadeInUp" data-wow-delay="0.2s">
-                        <div class="portfolio-wrap">
-                            <div class="portfolio-img">
-                                <img src="img/tableau.png" alt="Image">
-                            </div>
-                            <div class="portfolio-text">
-                                <h3>My Tableau Public Profile</h3>
-                                <a class="btn" href="https://public.tableau.com/app/profile/ayush.tankha/vizzes" target="_blank">+</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-3 wow fadeInUp" data-wow-delay="0.4s">
-                        <div class="portfolio-wrap">
-                            <div class="portfolio-img">
-                                <img src="img/PCA.png" alt="Image">
-                            </div>
-                            <div class="portfolio-text">
-                                <h3>Customer Market Segmentation</h3>
-                                <a class="btn" href="https://github.com/ayushtankha/cutomer-market-segmentation-of-credit-card-users/tree/main" target="_blank">+</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-1 wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="portfolio-wrap">
-                            <div class="portfolio-img">
-                                <img src="img/rain.png" alt="Image">
-                            </div>
-                            <div class="portfolio-text">
-                                <h3>Rainfall Prediction Model (Time Series)</h3>
-                                <a class="btn" href="https://medium.com/@ayushtankha/data-science-internship-telecom-sud-paris-4-months-65dd6ef943d8" target="_blank">+</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-2 wow fadeInUp" data-wow-delay="0.8s">
-                        <div class="portfolio-wrap">
-                            <div class="portfolio-img">
-                                <img src="img/patient21.png" alt="Image">
-                            </div>
-                            <div class="portfolio-text">
-                                <h3>Revenue & Patient Forecast (Patient21)</h3>
-                                <a class="btn" href="https://github.com/ayushtankha/Patient21_Analytics" target="_blank">+</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12 portfolio-item filter-3 wow fadeInUp" data-wow-delay="1s">
-                        <div class="portfolio-wrap">
-                            <div class="portfolio-img">
-                                <img src="img/HR.png" alt="Image">
-                            </div>
-                            <div class="portfolio-text">
-                                <h3>Employee Attrition Predictor</h3>
-                                <a class="btn" href="https://github.com/ayushtankha/Employee-Attrition-Predictor/tree/main" target="_blank">+</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio End -->
-        <div></div>
-        
-        <!-- Banner Start -->
-        <div class="banner wow zoomIn" data-wow-delay="0.1s">
-            <div class="container">
-                <div class="section-header text-center">
-                    <!-- p>Awesome Discount</p-->
-                    <h2>Get to know <span>ME</span> </h2>
-                </div>
-                
-                </div>
-            </div>
-        </div>
-        <!-- Banner End -->
-        
-        
-        <!-- Price Start -->
-        <!-- div class="price" id="price">
-            <div class="container">
-                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
-                    <p>Pricing Plan</p>
-                    <h2>Affordable Price</h2>
-                </div>
-                <div class="row">
-                    <div class="col-md-4 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="price-item">
-                            <div class="price-header">
-                                <div class="price-title">
-                                    <h2>Basic</h2>
-                                </div>
-                                <div class="price-prices">
-                                    <h2><small>$</small>49<span>/ mo</span></h2>
-                                </div>
-                            </div>
-                            <div class="price-body">
-                                <div class="price-description">
-                                    <ul>
-                                        <li>Bootstrap 4</li>
-                                        <li>Font Awesome 5</li>
-                                        <li>Responsive Design</li>
-                                        <li>Browser Compatibility</li>
-                                        <li>Easy To Use</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="price-footer">
-                                <div class="price-action">
-                                    <a class="btn" href="">Order Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 wow fadeInUp" data-wow-delay="0.0s">
-                        <div class="price-item featured-item">
-                            <div class="price-header">
-                                <div class="price-title">
-                                    <h2>Standard</h2>
-                                </div>
-                                <div class="price-prices">
-                                    <h2><small>$</small>99<span>/ mo</span></h2>
-                                </div>
-                            </div>
-                            <div class="price-body">
-                                <div class="price-description">
-                                    <ul>
-                                        <li>Bootstrap 4</li>
-                                        <li>Font Awesome 5</li>
-                                        <li>Responsive Design</li>
-                                        <li>Browser Compatibility</li>
-                                        <li>Easy To Use</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="price-footer">
-                                <div class="price-action">
-                                    <a class="btn" href="">Order Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 wow fadeInUp" data-wow-delay="0.5s">
-                        <div class="price-item">
-                            <div class="price-header">
-                                <div class="price-title">
-                                    <h2>Premium</h2>
-                                </div>
-                                <div class="price-prices">
-                                    <h2><small>$</small>149<span>/ mo</span></h2>
-                                </div>
-                            </div>
-                            <div class="price-body">
-                                <div class="price-description">
-                                    <ul>
-                                        <li>Bootstrap 4</li>
-                                        <li>Font Awesome 5</li>
-                                        <li>Responsive Design</li>
-                                        <li>Browser Compatibility</li>
-                                        <li>Easy To Use</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="price-footer">
-                                <div class="price-action">
-                                    <a class="btn" href="">Order Now</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <!/div>
-        <Price End -->
-        
-        
-        <!-- Testimonial Start -->
-        <!--div class="testimonial wow fadeInUp" data-wow-delay="0.1s" id="review">
-            <div class="container">
-                <div class="testimonial-icon">
-                    <i class="fa fa-quote-left"></i>
-                </div>
-                <div class="owl-carousel testimonials-carousel">
-                    <div class="testimonial-item">
-                        <div class="testimonial-img">
-                            <img src="img/testimonial-1.jpg" alt="Image">
-                        </div>
-                        <div class="testimonial-text">
-                            <p>
-                                Lorem ipsum dolor sit amet consec adipis elit. Etiam accums lacus eget velit tincid, quis suscip justo dictum. Lorem ipsum dolor sit amet consec adipis elit.
-                            </p>
-                            <h3>Customer Name</h3>
-                            <h4>Profession</h4>
-                        </div>
-                    </div>
-                    <div class="testimonial-item">
-                        <div class="testimonial-img">
-                            <img src="img/testimonial-2.jpg" alt="Image">
-                        </div>
-                        <div class="testimonial-text">
-                            <p>
-                                Lorem ipsum dolor sit amet consec adipis elit. Etiam accums lacus eget velit tincid, quis suscip justo dictum. Lorem ipsum dolor sit amet consec adipis elit.
-                            </p>
-                            <h3>Customer Name</h3>
-                            <h4>Profession</h4>
-                        </div>
-                    </div>
-                    <div class="testimonial-item">
-                        <div class="testimonial-img">
-                            <img src="img/testimonial-3.jpg" alt="Image">
-                        </div>
-                        <div class="testimonial-text">
-                            <p>
-                                Lorem ipsum dolor sit amet consec adipis elit. Etiam accums lacus eget velit tincid, quis suscip justo dictum. Lorem ipsum dolor sit amet consec adipis elit.
-                            </p>
-                            <h3>Customer Name</h3>
-                            <h4>Profession</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <Testimonial End -->
+<script>
+// LANG
+let isAr = false;
+function toggleLang() {
+  isAr = !isAr;
+  document.body.classList.toggle('ar', isAr);
+  document.documentElement.lang = isAr ? 'ar' : 'fr';
+  document.getElementById('langBtn').textContent = isAr ? '🌐 Français' : '🌐 العربية';
+  const key = isAr ? 'data-ar' : 'data-fr';
+  document.querySelectorAll('[data-fr]').forEach(el => {
+    const val = el.getAttribute(key);
+    if (val) el.innerHTML = val;
+  });
+}
 
+// SERVICE TABS
+document.querySelectorAll('.service-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.service-item').forEach(i => i.classList.remove('active'));
+    document.querySelectorAll('.service-card').forEach(c => c.classList.remove('active'));
+    item.classList.add('active');
+    document.getElementById(item.dataset.target).classList.add('active');
+  });
+});
 
-        <!-- Team Start -->
-        <div class="team" id="team">
-            <div class="container">
-                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
-                    <p>My Hobbies</p>
-                    <h2>I like to Run !</h2>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.0s">
-                        <div class="team-item">
-                            <div class="team-img">
-                                <img src="img/antwerp.jpg" alt="Image">
-                            </div>
-                            <div class="team-text">
-                                <h2>Antwerp Running Crew</h2>
-                                <h4>Runner</h4>
-                                <p>
-                                    A member of Antwerp Running Crew
-                                </p>
-                                <!--div class="team-social">
-                                    <a class="btn" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn" href=""><i class="fab fa-linkedin-in"></i></a>
-                                    <a class="btn" href=""><i class="fab fa-instagram"></i></a>
-                                </div -->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.2s">
-                        <div class="team-item">
-                            <div class="team-img">
-                                <img src="img/mid.jpg" alt="Image">
-                            </div>
-                            <div class="team-text">
-                                <h2>Midnight Runners Paris</h2>
-                                <h4>Runner</h4>
-                                <p>
-                                    A member of Midhnight Runners Paris
-                                </p>
-                                <!--div class="team-social">
-                                    <a class="btn" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn" href=""><i class="fab fa-linkedin-in"></i></a>
-                                    <a class="btn" href=""><i class="fab fa-instagram"></i></a>
-                                </div-->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.4s">
-                        <div class="team-item">
-                            <div class="team-img">
-                                <img src="img/marathon.jpg" alt="Image">
-                            </div>
-                            <div class="team-text">
-                                <h2>Paris Marathon 2023</h2>
-                                <h4>Finisher</h4>
-                                <p>
-                                    Completed my first marathon (Schnider Electric Paris Marathon 2023) with time 5 hr 25 min.
-                                </p>
-                                <!--div class="team-social">
-                                    <a class="btn" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn" href=""><i class="fab fa-linkedin-in"></i></a>
-                                    <a class="btn" href=""><i class="fab fa-instagram"></i></a>
-                                </div-->
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.6s">
-                        <div class="team-item">
-                            <div class="team-img">
-                                <img src="img/paris.jpeg" alt="Image">
-                            </div>
-                            <div class="team-text">
-                                <h2>Paris Versailles 2022</h2>
-                                <h4>Finisher</h4>
-                                <p>
-                                    Completed the Paris Versailles Run 2022 with time 1 hr 49 min.
-                                </p>
-                                <!--div class="team-social">
-                                    <a class="btn" href=""><i class="fab fa-twitter"></i></a>
-                                    <a class="btn" href=""><i class="fab fa-facebook-f"></i></a>
-                                    <a class="btn" href=""><i class="fab fa-linkedin-in"></i></a>
-                                    <a class="btn" href=""><i class="fab fa-instagram"></i></a>
-                                </div-->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Team End -->
-        
-        
-        <!-- Contact Start -->
-        <!-- div class="contact wow fadeInUp" data-wow-delay="0.1s" id="contact">
-            <div class="container-fluid">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md-4"></div>
-                        <div class="col-md-8">
-                            <div class="contact-form">
-                                <div id="success"></div>
-                                <form name="sentMessage" id="contactForm" novalidate="novalidate">
-                                    <div class="control-group">
-                                        <input type="text" class="form-control" id="name" placeholder="Your Name" required="required" data-validation-required-message="Please enter your name" />
-                                        <p class="help-block"></p>
-                                    </div>
-                                    <div class="control-group">
-                                        <input type="email" class="form-control" id="email" placeholder="Your Email" required="required" data-validation-required-message="Please enter your email" />
-                                        <p class="help-block"></p>
-                                    </div>
-                                    <div class="control-group">
-                                        <input type="text" class="form-control" id="subject" placeholder="Subject" required="required" data-validation-required-message="Please enter a subject" />
-                                        <p class="help-block"></p>
-                                    </div>
-                                    <div class="control-group">
-                                        <textarea class="form-control" id="message" placeholder="Message" required="required" data-validation-required-message="Please enter your message"></textarea>
-                                        <p class="help-block"></p>
-                                    </div>
-                                    <div>
-                                        <button class="btn" type="submit" id="sendMessageButton">Send Message</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div -->
-        <!-- Contact End -->
-
-
-        <!-- Blog Start -->
-        <div class="blog" id="blog">
-            <div class="container">
-                <div class="section-header text-center wow zoomIn" data-wow-delay="0.1s">
-                    <p>From Blog</p>
-                    <h2>Latest Articles</h2>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="blog-item wow fadeInUp" data-wow-delay="0.1s">
-                            <div class="blog-img">
-                                <img src="img/db.png" alt="Blog">
-                            </div>
-                            <div class="blog-text">
-                                <h2>Database systems — Introduction to Databases </h2>
-                                <div class="blog-meta">
-                                    <p><i class="far fa-user"></i>Admin</p>
-                                    <!--p><i class="far fa-list-alt"></i>Web Design</p>
-                                    <p><i class="far fa-calendar-alt"></i>01-Jan-2045</p>
-                                    <p><i class="far fa-comments"></i>5</p-->
-                                </div>
-                                <p>
-                                    A database system is a computerized system whose overall purpose is to store data and allow users to retrieve and update that ....                                </p>
-                                <a class="btn" href="https://medium.com/@ayushtankha/database-systems-introduction-to-databases-5054dc6a4fa5" target="_blank">Read More <i class="fa fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="blog-item wow fadeInUp" data-wow-delay="0.3s">
-                            <div class="blog-img">
-                                <img src="img/pmf.png" alt="Blog">
-                            </div>
-                            <div class="blog-text">
-                                <h2>Statistics and Probability — Discrete Distributions </h2>
-                                <div class="blog-meta">
-                                    <p><i class="far fa-user"></i>Admin</p>
-                                    <!--p><i class="far fa-list-alt"></i>Apps Design</p>
-                                    <p><i class="far fa-calendar-alt"></i>01-Jan-2045</p>
-                                    <p><i class="far fa-comments"></i>10</p-->
-                                </div>
-                                <p>
-                                    When dealing with a discrete random variable X that takes on the values x1​,x2​,…, there is a corresponding ...
-                                </p>
-                                <a class="btn" href="https://medium.com/@ayushtankha/statistics-and-probability-discrete-distributions-12-100-a20070165c7d" target="_blank">Read More <i class="fa fa-angle-right"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Blog End -->
-
-
-        <!-- Footer Start -->
-        <div class="footer wow fadeIn" data-wow-delay="0.3s" id="isfooter">
-            <div class="container-fluid">
-                <div class="container">
-                    <div class="footer-info">
-                        <h2>Send me a Message !</h2>
-                        <h3>Ayush Tankha</h3>
-                        <div class="footer-menu">
-                            <p>+33 745738956</p>
-                            <p>ayushtankha@gmail.com</p>
-                        </div>
-                        <h3>158 Amerikalei, Antwerp 2000, Belgium</h3>
-
-                        <div class="footer-social">
-                            <!--a href=""><i class="fab fa-twitter"></i></a>
-                            <a href=""><i class="fab fa-facebook-f"></i></a>
-                            <a href=""><i class="fab fa-youtube"></i></a>
-                            <a href=""><i class="fab fa-instagram"></i></a -->
-                            <a href="https://github.com/ayushtankha" target="_blank"><i class="fab fa-github"></i></a>
-
-                            <a href="https://medium.com/@ayushtankha" target="_blank"><i class="fab fa-medium"></i></a>
-
-                            <a href="https://www.linkedin.com/in/ayush-tankha/" target="_blank"><i class="fab fa-linkedin-in" ></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="container copyright">
-                    <p>&copy; <a href="#">Ayush Tankha</a>, All Right Reserved | Designed By <a href="https://htmlcodex.com">HTML Codex</a></p>
-                </div>
-            </div>
-        </div>
-        <!-- Footer End -->
-        
-        
-        <!-- Back to top button -->
-        <a href="#" class="btn back-to-top"><i class="fa fa-chevron-up"></i></a>
-        
-        
-        <!-- Pre Loader -->
-        <div id="loader" class="show">
-            <div class="loader"></div>
-        </div>
-
-        
-        <!-- JavaScript Libraries -->
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
-        <script src="lib/easing/easing.min.js"></script>
-        <script src="lib/wow/wow.min.js"></script>
-        <script src="lib/waypoints/waypoints.min.js"></script>
-        <script src="lib/typed/typed.min.js"></script>
-        <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-        <script src="lib/isotope/isotope.pkgd.min.js"></script>
-        <script src="lib/lightbox/js/lightbox.min.js"></script>
-        
-        <!-- Contact Javascript File -->
-        <script src="mail/jqBootstrapValidation.min.js"></script>
-        <script src="mail/contact.js"></script>
-
-        <!-- Template Javascript -->
-        <script src="js/main.js"></script>
-    </body>
+// SCROLL REVEAL
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal, .skill-card, .project-card').forEach((el, i) => {
+  el.classList.add('reveal');
+  el.style.transitionDelay = (i % 6) * 0.06 + 's';
+  obs.observe(el);
+});
+</script>
+</body>
 </html>
