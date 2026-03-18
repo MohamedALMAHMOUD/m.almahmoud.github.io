@@ -1,10 +1,9 @@
-name: Deploiement Site Statique
+name: Deploiement Portfolio
 
 on:
   push:
-    branches: ["main"]
+    branches: ["main"] # Vérifiez que votre branche s'appelle bien main
 
-# Autorisations nécessaires pour déployer sur GitHub Pages
 permissions:
   contents: read
   pages: write
@@ -14,21 +13,20 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
+      # On force Node 24 pour supprimer l'alerte de dépréciation
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
     steps:
       - name: Checkout du code
         uses: actions/checkout@v4
 
       - name: Configuration de GitHub Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@v5 # Version mise à jour
 
-      - name: Création de l'artefact
+      - name: Creation de l'artefact (HTML seul)
         uses: actions/upload-pages-artifact@v3
         with:
-          # On indique le dossier où se trouve votre index.html
-          # '.' signifie la racine du dépôt
-          path: '.' 
+          path: '.' # On envoie tout le dossier racine
 
-      - name: Déploiement sur GitHub Pages
+      - name: Deploiement reel
         id: deployment
         uses: actions/deploy-pages@v4
